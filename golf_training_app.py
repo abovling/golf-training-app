@@ -23,10 +23,19 @@ træningstyper = {
         ],
     },
     "B": {
-        "plan": "Her kan du tilføje træningsplan for B...",
+        "plan": """
+- **0–10 min:** Indspil med PW, SW, 56° fra 100 m. Fokus på kontakt og boldflugt.
+- **10–25 min:** Wedgekontrol: slå til 80, 60 og 40 m med SW og 56°. Brug 'klokkemodellen' til svinglængde.
+- **25–40 min:** Høj lob-chip eller bunkerslag med 56°. Fokus på åbent kølleblad og accelereret sving.
+- **40–50 min:** Kort putting (1–2 m): Øv 9 i træk. Mål: alle 9 i træk på færrest forsøg.
+- **50–60 min:** Afstandskontrol putting (5–10 m): 10 bolde – mål: alle indenfor 1 puttelængde.
+""",
         "øvelser": [
-            ("Øvelse 1 for B", "text_input"),
-            ("Øvelse 2 for B", "number_input", 0, 10, 0),
+            ("0–10 min: Kommentar eller antal gentagelser", "text_input"),
+            ("10–25 min: Kommentar om wedgekontrol", "text_input"),
+            ("25–40 min: Kommentar eller antal gentagelser", "text_input"),
+            ("40–50 min: Antal 9 i træk (mål: 9)", "number_input", 0, 20, 0),
+            ("50–60 min: Antal bolde indenfor 1 puttelængde (max 10)", "number_input", 0, 10, 0),
         ],
     },
     "C": {
@@ -57,7 +66,6 @@ valgt_træning = st.selectbox("Vælg træningstype:", list(træningstyper.keys()
 st.markdown("### Træningsplan")
 st.markdown(træningstyper[valgt_træning]["plan"])
 
-# Gem input værdier
 resultater = []
 
 for øvelse in træningstyper[valgt_træning]["øvelser"]:
@@ -73,14 +81,12 @@ for øvelse in træningstyper[valgt_træning]["øvelser"]:
         val = None
     resultater.append((label, val))
 
-# Generer rapport
 if st.button("Generer rapport"):
     rapport = f"Golftræning – Træning {valgt_træning} rapport\n\n"
     for label, val in resultater:
         rapport += f"{label}: {val}\n"
     st.text_area("Rapport klar til kopiering:", rapport, height=250)
 
-    # Kopier-knap med JavaScript
     components.html(f"""
     <script>
     function copyToClipboard() {{
