@@ -10,16 +10,16 @@ træningstyper = {
         "plan": """
 - **0–10 min:** Opvarmning med halve SW og 56° wedge (30–50 m). Fokus på kontakt og balance.
 - **10–25 min:** Pitch med PW, SW og 56° fra 30–70 m. Skift afstand og kølle. Mål: Ram 5/10 inden for greenområde.
-- **25–35 min:** Chips fra 10–20 m. Øv forskellige lies (kort græs, semirough). Skift mellem PW og 56°.
+- **25–35 min:** Chips fra 10–20 m. Øv forskellige lies (kort græs, semirough). Skift mellem PW og 56°. Mål: Antal chips indenfor 10 meter af flaget.
 - **35–45 min:** ‘Up & down’-øvelse: Chip + putt. 5 bolde – mål: Lav 2 pars.
-- **45–60 min:** Lang putting (10–15 m). Fokus på afstandskontrol. Øvelse: 2-putt challenge eller GolfBoy lag putting.
+- **45–60 min:** Lang putting (10–15 m). Fokus på afstandskontrol. Mål: Antal 2-putt ud af totale forsøg.
 """,
         "øvelser": [
-            ("0–10 min: Kommentar eller antal gentagelser", "text_input"),
+            ("0–10 min: Evaluering (%)", "slider", 0, 100, 0),
             ("10–25 min: Antal ramte inden for greenområde (0–10)", "slider", 0, 10, 0),
-            ("25–35 min: Kommentar eller antal gentagelser", "text_input"),
+            ("25–35 min: Antal chips indenfor 10 meter af flaget", "number_input", 0, 50, 0),
             ("35–45 min: Antal pars lavet (mål: 2)", "number_input", 0, 5, 0),
-            ("45–60 min: Kommentar eller score på øvelse", "text_input"),
+            ("45–60 min: Antal 2-putt ud af totale forsøg", "text_input"),
         ],
     },
     "B": {
@@ -81,7 +81,6 @@ if st.button("Generer rapport"):
     st.text_area("Rapport klar til kopiering:", rapport, height=250)
 
     # Kopier-knap med JavaScript
-    import streamlit.components.v1 as components
     components.html(f"""
     <script>
     function copyToClipboard() {{
