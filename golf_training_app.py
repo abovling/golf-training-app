@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 st.title("Golftræning – Træning A")
 
@@ -18,15 +19,28 @@ chips = st.text_input("25–35 min: Kommentar eller antal gentagelser", "")
 up_down = st.number_input("35–45 min: Antal pars lavet (mål: 2)", min_value=0, max_value=5, value=0)
 lang_putting = st.text_input("45–60 min: Kommentar eller score på øvelse", "")
 
-# Generer rapport
-if st.button("Generer rapport"):
-    rapport = f"""
-    Golftræning – Træning A rapport
+rapport = f"""
+Golftræning – Træning A rapport
 
-    0–10 min – Opvarmning: {opvarmning}
-    10–25 min – Pitch (ramte inden for greenområde): {pitch}/10
-    25–35 min – Chips: {chips}
-    35–45 min – Up & down (pars lavet): {up_down} / 5 (mål 2)
-    45–60 min – Lang putting: {lang_putting}
-    """
-    st.text_area("Rapport klar til kopiering:", rapport, height=250)
+0–10 min – Opvarmning: {opvarmning}
+10–25 min – Pitch (ramte inden for greenområde): {pitch}/10
+25–35 min – Chips: {chips}
+35–45 min – Up & down (pars lavet): {up_down} / 5 (mål 2)
+45–60 min – Lang putting: {lang_putting}
+"""
+
+st.text_area("Rapport klar til kopiering:", rapport, height=250)
+
+components.html(f"""
+<script>
+function copyToClipboard() {{
+    const text = `{rapport}`;
+    navigator.clipboard.writeText(text).then(function() {{
+        alert('Rapport kopieret til udklipsholder!');
+    }}, function(err) {{
+        alert('Fejl ved kopiering: ', err);
+    }});
+}}
+</script>
+<button onclick="copyToClipboard()">Kopier rapport</button>
+""", height=50)
