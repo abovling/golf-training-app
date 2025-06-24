@@ -54,7 +54,7 @@ træningstyper = {
             ("Øvelse 2 for D", "number_input", 0, 10, 0),
         ],
     },
-    "E": {
+    "E - Hjemme-putting": {
         "plan": """
 - **0–5 min:** Opvarmning  
   • 10 lette putts på 2 meter.  
