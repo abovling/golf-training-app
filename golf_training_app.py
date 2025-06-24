@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-st.set_page_config(page_title="Golftræningsværktøj")
+st.set_page_config(page_title="Mit Golftræningsværktøj")
 
 st.title("GOLFTRÆNING 🏌️‍♂️")
 st.caption("Golftræning af Anders Bøvling (2025)")
@@ -55,10 +55,36 @@ træningstyper = {
         ],
     },
     "E": {
-        "plan": "Her kan du tilføje træningsplan for E...",
+        "plan": """
+- **0–5 min:** Opvarmning  
+  • 10 lette putts på 2 meter.  
+  • Fokus: ensartet rytme, balance, blød hånd.
+
+- **5–15 min:** Præcision – “9 i træk”  
+  • Sæt mærke 1–1,5 meter fra hul.  
+  • Hole 9 putts i træk.  
+  • Hvis du brænder én, starter du forfra.  
+  • Mål: Hole 9 i træk inden for 5 forsøg.  
+  • Log i app: “Short putting” – noter antal forsøg.
+
+- **15–25 min:** Afstandskontrol – “Lag-putts”  
+  • Sæt mål 3,5–4 m væk.  
+  • Læg målzone (fx bold, tape eller 30 cm ring).  
+  • Slå 10 putts, mål: 8/10 inden for 1 puttelængde.  
+  • Brug GolfBoy til tempo og retning.
+
+- **25–35 min:** 2-putt Challenge – “9 huller”  
+  • Brug “Random start” eller læg 9 forskellige afstande 1–4 m.  
+  • Første putt = lag putt til hul eller målzone.  
+  • Andet putt = hole den → tæller som 2-putt.  
+  • Score: ✅ 1-putt, ok 2-putt, ❌ 3-putt.  
+  • Mål: max 1 treputt i hele runden.
+""",
         "øvelser": [
-            ("Øvelse 1 for E", "text_input"),
-            ("Øvelse 2 for E", "number_input", 0, 10, 0),
+            ("0–5 min: Kommentar/opvarmning", "text_input"),
+            ("5–15 min: Antal forsøg til at hole 9 i træk (mål: ≤5)", "number_input", 1, 20, 5),
+            ("15–25 min: Antal putts inden for 1 puttelængde (max 10)", "number_input", 0, 10, 0),
+            ("25–35 min: Kommentar om 2-putt challenge", "text_input"),
         ],
     },
 }
